@@ -10,32 +10,66 @@ which include the speech recognizer, translator, speech-to-text, and data transf
 and touchscreen on the Jetson Nano.
 """
 
-import speech_recognition as sr
-import time
-from translate import Translator
+import sys
+import os
+import rt_script_defs
+import rt_script_mic
+import rt_script_translator_models
+import argostranslate
 
 
-from os import path
+if __name__== "__main__":
 
-recognize = sr.Recognizer()
-with sr.Microphone() as mic:
+    if(len(sys.argv) < 4):
+        print("Not enough commands to run. Try [python3 rt_script_main.py [source_language] [target_language] [offline/online]")
+        exit
 
-#Detect Audio
-    print("Testing Audio Detection: ")
-    sound = recognize.listen(mic)
+    if(len(sys.argv) > 4):
+        print("Too many arguments. Try python3 rt_script_main.py [source_language] [target_language] [offline/online]")
 
-try:
-    print("Captured Transcript: " + recognize.recognize_sphinx(sound) + " Detection Test Passed")
+    
+    
+    source_lang = sys.argv[1]
 
-except sr.UnknownValueError:
-    print("Error Detecting Voice!")
+    target_lang = sys.argv[2]
 
-except sr.RequestError as err:
-        print("API Error; {0}".format(err))
+    device_mode = sys.argv[3]
 
+    lang_dictionary = rt_script_defs.lang_dict
 
-#Background Listening
+    cwd = os.getcwd()
 
-#Caption Audio
+    mic = rt_script_mic
 
-#Translation
+    translate = rt_script_translator_models
+
+    command = input('Type [listen] to begin recording audio\n')
+
+    if(command != 'listen'):
+        while command != 'listen':
+            command = input('Type [listen] to begin recording audio\n')
+
+    #audio = rt_script_mic.listen_record()
+
+    if(device_mode == 'offline'):
+        result = mic.offline_mode_translation(cwd+lang_dictionary[source_lang])
+
+        #For Proxy function when neither languages are English
+        if(source_lang != 'en' and target_lang != 'en'):
+            print(translate.en_proxy(source_lang,target_lang,result))
+
+        if(source_lang == 'es' and target_lang == 'en'):
+            print(translate.es_en(result))
+
+        if(source_lang == 'en' and target_lang == 'es'):
+            print(translate.en_es(result))
+
+        if(source_lang == 'fa' and target_lang == 'en'):
+            print(translate.fa_en(result))
+
+        if(source_lang == 'en' and target_lang == 'fa'):
+            print(translate.en_fa(result))
+
+    #For Online Mode (To Be Included Later)
+    else:
+        pass

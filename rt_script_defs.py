@@ -1,9 +1,6 @@
 #Definitions for most functions and variables
 
 #Paths to language models ISO 639-1 notation
-#en = 
-#es = 
-
 
 lang_dict = {"en": '/en', 
              "es": '/es', 

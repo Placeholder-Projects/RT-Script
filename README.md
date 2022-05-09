@@ -4,10 +4,12 @@
 
 
 #RT Script APIs:
-Vosk API Homepage:  https://alphacephei.com/vosk/
 
-ArgosTranslate API Homepage: https://www.argosopentech.com/
-ArgosTranslate API Documentation: https://pypi.org/project/argostranslate/
+
+#Vosk API Homepage:  https://alphacephei.com/vosk/
+
+#ArgosTranslate API Homepage: https://www.argosopentech.com/
+#ArgosTranslate API Documentation: https://pypi.org/project/argostranslate/
 ###################################################################################################
 
 REsource #1: https://github.com/mozilla/DeepSpeech

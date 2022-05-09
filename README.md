@@ -12,6 +12,8 @@
 
 #ArgosTranslate API Documentation: https://pypi.org/project/argostranslate/
 
+#Language Models for RT Script: https://drive.google.com/file/d/1JvQiCrSkkINtsrt0VmTq8vV_9HdYBnOJ/view?usp=sharing
+
 ###################################################################################################
 
 REsource #1: https://github.com/mozilla/DeepSpeech
